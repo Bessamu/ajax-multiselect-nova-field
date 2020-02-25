@@ -16,9 +16,11 @@ class FieldServiceProvider extends ServiceProvider
     public function boot()
     {
         Nova::serving(function (ServingNova $event) {
-            Nova::script('ajax-multiselect-field', __DIR__.'/../dist/js/field.js');
-            Nova::style('ajax-multiselect-field', __DIR__.'/../dist/css/field.css');
+            Nova::script('ajax-multiselect', __DIR__.'/../dist/js/field.js');
+            Nova::style('ajax-multiselect', __DIR__.'/../dist/css/field.css');
         });
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
 
     /**
