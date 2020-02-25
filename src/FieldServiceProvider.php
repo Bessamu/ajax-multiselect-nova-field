@@ -1,6 +1,6 @@
 <?php
 
-namespace Bessamu\AjaxMultiselectField;
+namespace Bessamu\AjaxMultiselectNovaField;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;

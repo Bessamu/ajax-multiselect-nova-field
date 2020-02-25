@@ -1,5 +1,5 @@
 {
-    "name": "bessamu/ajax-multiselect-field",
+    "name": "bessamu/ajax-multiselect-nova-field",
     "description": "A Laravel Nova field.",
     "keywords": [
         "laravel",
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Bessamu\\AjaxMultiselectField\\": "src/"
+            "Bessamu\\AjaxMultiselectNovaField\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Bessamu\\AjaxMultiselectField\\FieldServiceProvider"
+                "Bessamu\\AjaxMultiselectNovaField\\FieldServiceProvider"
             ]
         }
     },

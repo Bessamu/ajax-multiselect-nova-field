@@ -1,10 +1,10 @@
 <?php
 
-namespace Bessamu\AjaxMultiselectField;
+namespace Bessamu\AjaxMultiselectNovaField;
 
 use Laravel\Nova\Fields\Field;
 
-class AjaxMultiselectField extends Field
+class AjaxMultiselect extends Field
 {
     /**
      * The field's component.
