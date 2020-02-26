@@ -1,1 +1,8 @@
-// Nova Tool CSS
+.ajax-multiselect {
+  &__show-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

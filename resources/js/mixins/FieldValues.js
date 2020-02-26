@@ -1,23 +1,36 @@
 export default {
   data() {
     return {
-      ajaxOptions: null
+      options: []
     }
   },
 
   methods: {
-    setInitialOptions: async() => {
-      return Nova.request().get('/nova-vendor/nova-multiselect-field/ajax/options', {
-        params: {
-          'class': this.field.ajaxClass,
-          'label': this.field.ajaxLabel,
-          'value': this.field.value,
-          'withValue': withValue
-        }
-      }).then(response => {
-        console.log(1)
-        this.ajaxOptions = response.data
-      })
+    setValueFromField() {
+      this.value = JSON.parse(this.field.value || '')
+    },
+    async setInitialOptions() {
+      if (this.value.length > 0) {
+        Nova.request().get('/nova-vendor/ajax-multiselect-nova-field/ajax/options', {
+          params: {
+            'class': this.field.modelClass,
+            'label': this.label,
+            'id-column': this.idColumn,
+            'value': this.field.value
+          }
+        }).then(response => {
+          this.options = response.data
+        })
+      }
+    }
+  },
+
+  computed: {
+    idColumn() {
+      return this.field.modelIdColumn || 'id'
+    },
+    label() {
+      return this.field.searchLabel
     }
   }
 }

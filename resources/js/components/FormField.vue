@@ -3,13 +3,15 @@
     <template slot="field">
       <div class="flex flex-col">
         <multiselect
-          label="label"
-          track-by="value"
-          :id="field.name"
-          :value="value"
-          :options="ajaxOptions"
-          :max="field.max"
+          v-model="value"
+          :track-by="this.idColumn"
+          :label="label"
+          :options="options"
+          :max="field.max || null"
+          :placeholder="field.placeholder || 'Select option'"
+          :close-on-select="false"
           :loading="isLoading"
+          :multiple="true"
           @search-change="getOptions"
         />
       </div>
@@ -39,25 +41,21 @@ export default {
   },
 
   methods: {
-    /*
-     * Set the initial, internal value for the field.
-     */
-     setInitialValue() {
-      this.setInitialOptions()
-      console.log(2)
-      this.value = this.field.value
+    async setInitialValue() {
+      this.setValueFromField()
+      await this.setInitialOptions()
     },
 
-    /**
-     * Fill the given FormData object with the field's internal value.
-     */
     fill(formData) {
-      formData.append(this.field.attribute, this.value || '')
+      let value = this.value.map(item => {
+        return {
+          id: item[this.idColumn],
+          [this.label]: item[this.label],
+        }
+      })
+      formData.append(this.field.attribute, JSON.stringify(value) || [])
     },
 
-    /**
-     * Update the field's internal value.
-     */
     handleChange(value) {
       this.value = value
     },
@@ -67,15 +65,15 @@ export default {
         this.isLoading = true;
         clearTimeout(this.ajaxTimeout);
         this.ajaxTimeout = setTimeout(() => {
-          Nova.request().get('/nova-vendor/nova-multiselect-field/ajax', {
+          Nova.request().get('/nova-vendor/ajax-multiselect-nova-field/ajax', {
             params: {
               'class': this.field.modelClass,
-              'label': this.field.searchLabel,
+              'label': this.label,
               'limit': this.field.maxOptions,
               'query': query
             }
           }).then((response) => {
-            this.ajaxOptions = response.data;
+            this.options = response.data;
             this.isLoading = false;
           }).catch((error) => {
             this.isLoading = false;
