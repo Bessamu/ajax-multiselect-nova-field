@@ -25,8 +25,18 @@ class AjaxMultiselect extends Field
         return $this->withMeta(['modelClass' => $modelClass, 'searchLabel' => $searchLabel]);
     }
 
+    public function modelIdColumn(string $column)
+    {
+        return $this->withMeta(['modelIdColumn' => $column]);
+    }
+
     public function maxOptions(int $max)
     {
         return $this->withMeta(['max' => $max]);
+    }
+
+    public function placeholder($placeholder)
+    {
+        return $this->withMeta(['placeholder' => $placeholder]);
     }
 }

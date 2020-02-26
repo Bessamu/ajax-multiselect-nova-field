@@ -4,7 +4,6 @@ namespace Bessamu\AjaxMultiselectNovaField\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Collection;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class AjaxMultiselectController extends Controller
@@ -21,26 +20,22 @@ class AjaxMultiselectController extends Controller
         $builder->where($label, 'like', "%$query%");
         $builder->limit($request->input('limit') ?? self::DEFAULT_LIMIT);
 
-        return response()->json($this->serializeModels($builder->get(), $label));
+        return response()->json($builder->get());
     }
 
     public function getOptions(NovaRequest $request)
     {
-        $label = $request->input('label');
-        $items = ($request->input('class'))::findOrFail($request->input('value'));
-
-        $items = $this->serializeModels($items, $label);
+        $value = $this->serializeValues($request->input('value'), $request->input('id-column'));
+        $items = ($request->input('class'))::findOrFail($value);
 
         return response()->json($items);
     }
 
-    private function serializeModels(Collection $models, string $label)
+    private function serializeValues(string $value, string $id)
     {
-        return $models->map(function ($model) use ($label) {
-            return [
-                'label' => $model->$label,
-                'value' => $model->id
-            ];
+        $value = collect(json_decode($value));
+        return $value->map(function ($item) use ($id) {
+            return $item->$id;
         });
     }
 }
