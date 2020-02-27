@@ -1,6 +1,8 @@
 # Ajax Multiselect Nova Field
 Laravel Nova package add vue-multiselect field work with ajax requests. Field values save as json string.
   
+![](docs/ajax-request.gif)
+
 ## Getting Started
 ### Installing
 

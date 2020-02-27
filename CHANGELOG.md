@@ -6,8 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0-alpha] - 2020-02-26
+## [1.0.0-alpha.1] - 2020-02-27
+
 ### Added
+
+- Gif for the documentation
+
+### Changed
+
+- Update documentation  
+
+## [1.0.0-alpha] - 2020-02-26
+
+### Added
+
 - Package "[vue-multiselect](https://vue-multiselect.js.org/)" work with ajax requests
 - Data saved as json string into db table
 - Field options for custom model id
