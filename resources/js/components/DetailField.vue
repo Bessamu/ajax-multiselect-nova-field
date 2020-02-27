@@ -35,6 +35,7 @@ export default {
   },
   beforeMount() {
     this.setValueFromField()
+    this.setInitialOptions()
   }
 }
 </script>

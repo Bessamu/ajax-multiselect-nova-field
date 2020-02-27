@@ -25,17 +25,8 @@ class AjaxMultiselectController extends Controller
 
     public function getOptions(NovaRequest $request)
     {
-        $value = $this->serializeValues($request->input('value'), $request->input('id-column'));
-        $items = ($request->input('class'))::findOrFail($value);
+        $items = ($request->input('class'))::findOrFail(json_decode($request->input('value')));
 
         return response()->json($items);
-    }
-
-    private function serializeValues(string $value, string $id)
-    {
-        $value = collect(json_decode($value));
-        return $value->map(function ($item) use ($id) {
-            return $item->$id;
-        });
     }
 }

@@ -15,11 +15,11 @@ export default {
           params: {
             'class': this.field.modelClass,
             'label': this.label,
-            'id-column': this.idColumn,
             'value': this.field.value
           }
         }).then(response => {
           this.options = response.data
+          this.value = response.data
         })
       }
     }

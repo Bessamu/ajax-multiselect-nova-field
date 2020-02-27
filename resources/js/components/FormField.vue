@@ -48,10 +48,7 @@ export default {
 
     fill(formData) {
       let value = this.value.map(item => {
-        return {
-          id: item[this.idColumn],
-          [this.label]: item[this.label],
-        }
+        return item[this.idColumn]
       })
       formData.append(this.field.attribute, JSON.stringify(value) || [])
     },
