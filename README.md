@@ -29,28 +29,29 @@ class NewsResource extends Resource
     public function fields(Request $request)
     {
         return [
-        AjaxMultiselect::make('Products', 'products')
-            ->model(Product::class, 'model')
-            ->placeholder('Select products')
-            ->maxOptions(5)
+            AjaxMultiselect::make('Products', 'products')
+                ->optionsModel(Product::class)
+                ->optionsLabel('model')
+                ->placeholder('Select products')
+                ->maxOptions(5)
         ];
     }
 }
 ```
-Option `model` required for a nova field:
+Option `optionsModel` required for this nova field:
 
-- First parameter is model class must be extended by `Illuminate\Database\Eloquent\Model`. 
-- Second parameter is label for searching model (`'name'` by default).
+- Parameter is model class string, must be extended by `Illuminate\Database\Eloquent\Model`. 
 
 Values saved as json string in a column.
 
 #### All options
 
-| option                        | parameters                               | values           |
-| ----------------------------- | ---------------------------------------- | ---------------- |
-| `model`                       | string $modelClass, string $searchLabel  | required, 'name' |
-| `placeholder`                 | string $placeholder                      | required         |
-| `maxOptions`                  | int $max                                 | required         |
+| option         | parameters           | values   | description                                                                                                 |
+|----------------|----------------------|----------|-------------------------------------------------------------------------------------------------------------|
+| `optionsModel` | string $modelClass   | required | Required option. Set a model class to search.                                                               |
+| `optionsLabel` | string $searchLabel  | required | Optional option. Set a label for frontend output and search models. By default searching label is `'name'`. |
+| `placeholder`  | string $placeholder  | required | Optional option. Set a placeholder for vue-multiselect input.                                               |
+| `maxOptions`   | int $max             | required | Optional option. Set the maximal number of selections and limit returned models                             | 
 
 
 ## Authors

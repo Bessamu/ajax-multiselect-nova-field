@@ -14,15 +14,25 @@ class AjaxMultiselect extends Field
     public $component = 'ajax-multiselect';
 
     /**
-     * Set search model by label.
+     * Set search model.
      *
      * @param string $modelClass
-     * @param string $searchLabel
      * @return $this
      */
-    public function model(string $modelClass, string $searchLabel = 'name')
+    public function optionsModel(string $modelClass)
     {
-        return $this->withMeta(['modelClass' => $modelClass, 'searchLabel' => $searchLabel]);
+        return $this->withMeta(['modelClass' => $modelClass]);
+    }
+
+    /**
+     * Set label for searching and frontend output
+     *
+     * @param string $searchLabel
+     * @return AjaxMultiselect
+     */
+    public function optionsLabel(string $searchLabel)
+    {
+        return $this->withMeta(['searchLabel' => $searchLabel]);
     }
 
     public function modelIdColumn(string $column)

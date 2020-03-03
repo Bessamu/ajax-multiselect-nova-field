@@ -30,7 +30,7 @@ export default {
       return this.field.modelIdColumn || 'id'
     },
     label() {
-      return this.field.searchLabel
+      return this.field.searchLabel || 'name'
     }
   }
 }
