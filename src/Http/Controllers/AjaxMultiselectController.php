@@ -20,6 +20,10 @@ class AjaxMultiselectController extends Controller
         $builder->where($label, 'like', "%$query%");
         $builder->limit($request->input('limit') ?? self::DEFAULT_LIMIT);
 
+        if ($request->has('filter')) {
+            $builder->raw($request->input('filter'));
+        }
+
         return response()->json($builder->get());
     }
 

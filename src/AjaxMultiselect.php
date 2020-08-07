@@ -2,6 +2,8 @@
 
 namespace Bessamu\AjaxMultiselectNovaField;
 
+use Closure;
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Nova\Fields\Field;
 
 class AjaxMultiselect extends Field
@@ -14,6 +16,11 @@ class AjaxMultiselect extends Field
     public $component = 'ajax-multiselect';
 
     /**
+     * @var string
+     */
+    private $modelClass = '';
+
+    /**
      * Set search model.
      *
      * @param string $modelClass
@@ -21,6 +28,7 @@ class AjaxMultiselect extends Field
      */
     public function optionsModel(string $modelClass)
     {
+        $this->modelClass = $modelClass;
         return $this->withMeta(['modelClass' => $modelClass]);
     }
 
@@ -43,6 +51,13 @@ class AjaxMultiselect extends Field
     public function maxOptions(int $max)
     {
         return $this->withMeta(['max' => $max]);
+    }
+
+    public function filter(Closure $callback)
+    {
+        $callback($query = $this->modelClass::query());
+
+        return $this->withMeta(['filter' => $query->toSql()]);
     }
 
     public function placeholder($placeholder)

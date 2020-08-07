@@ -67,6 +67,7 @@ export default {
               'class': this.field.modelClass,
               'label': this.label,
               'limit': this.field.maxOptions,
+              'filter': this.field.filter,
               'query': query
             }
           }).then((response) => {
