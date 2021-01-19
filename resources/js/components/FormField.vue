@@ -67,7 +67,8 @@ export default {
               'class': this.field.modelClass,
               'label': this.label,
               'limit': this.field.maxOptions,
-              'query': query
+              'query': query,
+              'custom_query': this.field.queryWhere
             }
           }).then((response) => {
             this.options = response.data;

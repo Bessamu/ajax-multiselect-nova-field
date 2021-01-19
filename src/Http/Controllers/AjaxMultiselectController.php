@@ -13,11 +13,15 @@ class AjaxMultiselectController extends Controller
     public function getOptionsByQuery(NovaRequest $request)
     {
         $query = $request->input('query');
+        $custom_query = $request->input('custom_query');
         $label = $request->input('label');
         /** @var Builder $builder */
         $builder = ($request->input('class'))::query();
 
         $builder->where($label, 'like', "%$query%");
+        if ($custom_query) {
+            $builder->whereRaw($custom_query);
+        }
         $builder->limit($request->input('limit') ?? self::DEFAULT_LIMIT);
 
         return response()->json($builder->get());
