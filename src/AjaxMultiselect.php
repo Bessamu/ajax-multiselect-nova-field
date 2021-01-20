@@ -49,4 +49,9 @@ class AjaxMultiselect extends Field
     {
         return $this->withMeta(['placeholder' => $placeholder]);
     }
+
+    public function queryWhere(string $column, $value, $operator = '=')
+    {
+        return $this->withMeta(['queryWhere' => $column . $operator . $value]);
+    }
 }
