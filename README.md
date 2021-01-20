@@ -32,6 +32,7 @@ class NewsResource extends Resource
             AjaxMultiselect::make('Products', 'products')
                 ->optionsModel(Product::class)
                 ->optionsLabel('model')
+                ->queryWhere('enabled', 1)
                 ->placeholder('Select products')
                 ->maxOptions(5)
         ];
@@ -46,12 +47,13 @@ Values saved as json string in a column.
 
 #### All options
 
-| option         | parameters           | values   | description                                                                                                 |
-|----------------|----------------------|----------|-------------------------------------------------------------------------------------------------------------|
-| `optionsModel` | string $modelClass   | required | Required option. Set a model class to search.                                                               |
-| `optionsLabel` | string $searchLabel  | required | Optional option. Set a label for frontend output and search models. By default searching label is `'name'`. |
-| `placeholder`  | string $placeholder  | required | Optional option. Set a placeholder for vue-multiselect input.                                               |
-| `maxOptions`   | int $max             | required | Optional option. Set the maximal number of selections and limit returned models                             | 
+| option         | parameters             | values   | description                                                                                                 |
+|----------------|------------------------|----------|-------------------------------------------------------------------------------------------------------------|
+| `optionsModel` | `string` $modelClass   | required | Required option. Set a model class to search.                                                               |
+| `optionsLabel` | `string` $searchLabel  | required | Optional option. Set a label for frontend output and search models. By default searching label is `'name'`. |
+| `queryWhere`   | `string` $column, `string` $value, `string` $operator = '=' | required | Optional option. Set query by a column, value and operator             |
+| `placeholder`  | `string` $placeholder  | required | Optional option. Set a placeholder for vue-multiselect input.                                               |
+| `maxOptions`   | `int` $max             | required | Optional option. Set the maximal number of selections and limit returned models                             | 
 
 
 ## Authors
