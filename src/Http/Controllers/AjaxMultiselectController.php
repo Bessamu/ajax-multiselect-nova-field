@@ -15,6 +15,9 @@ class AjaxMultiselectController extends Controller
         $query = $request->input('query');
         $custom_query = $request->input('custom_query');
         $label = $request->input('label');
+        $orderBy = $request->input('orderBy');
+        $orderDirection = $request->input('orderDirection');
+
         /** @var Builder $builder */
         $builder = ($request->input('class'))::query();
 
@@ -22,6 +25,11 @@ class AjaxMultiselectController extends Controller
         if ($custom_query) {
             $builder->whereRaw($custom_query);
         }
+
+        if ($orderBy && $orderDirection) {
+            $builder->orderBy($orderBy, $orderDirection);
+        }
+
         $builder->limit($request->input('limit') ?? self::DEFAULT_LIMIT);
 
         return response()->json($builder->get());
