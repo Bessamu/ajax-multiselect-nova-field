@@ -68,7 +68,9 @@ export default {
               'label': this.label,
               'limit': this.field.maxOptions,
               'query': query,
-              'custom_query': this.field.queryWhere
+              'custom_query': this.field.queryWhere,
+              'orderBy': this.field.orderBy,
+              'orderDirection': this.field.orderDirection
             }
           }).then((response) => {
             this.options = response.data;

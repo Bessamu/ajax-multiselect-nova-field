@@ -6,3 +6,11 @@
     cursor: pointer;
   }
 }
+
+.multiselect {
+  position: inherit!important;
+
+  &__content-wrapper {
+    position: relative!important;
+  }
+}

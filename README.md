@@ -47,13 +47,14 @@ Values saved as json string in a column.
 
 #### All options
 
-| option         | parameters             | values   | description                                                                                                 |
-|----------------|------------------------|----------|-------------------------------------------------------------------------------------------------------------|
-| `optionsModel` | `string` $modelClass   | required | Required option. Set a model class to search.                                                               |
-| `optionsLabel` | `string` $searchLabel  | required | Optional option. Set a label for frontend output and search models. By default searching label is `'name'`. |
-| `queryWhere`   | `string` $column, `string` $value, `string` $operator = '=' | required | Optional option. Set query by a column, value and operator             |
-| `placeholder`  | `string` $placeholder  | required | Optional option. Set a placeholder for vue-multiselect input.                                               |
-| `maxOptions`   | `int` $max             | required | Optional option. Set the maximal number of selections and limit returned models                             | 
+| option           | required | parameters             | description                                                                                          |
+|------------------|----------|------------------------|------------------------------------------------------------------------------------------------------|
+| `optionsModel()` | require  | `string` $modelClass   | Set a model class to search.                                                                         |
+| `optionsLabel()` | optional | `string` $searchLabel  | Set a label for frontend output and search models. By default searching label is `'name'`.           |
+| `queryWhere()`   | optional | `string` $column, `string` $value, `string` $operator = '=' | Set query by a column, value and operator                       |
+| `placeholder()`  | optional | `string` $placeholder  | Set a placeholder for vue-multiselect input.                                                         |
+| `maxOptions()`   | optional | `int` $max             | Set the maximal number of selections and limit returned models                                       | 
+| `orderBy()`      | optional | `string` $column, `string` $direction = 'asc' | Order your outputs by column name and use direction `asc`(default) or `desc`.| 
 
 
 ## Authors
