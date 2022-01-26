@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2]
+
+### Added
+
+- field.js.LICENSE.txt
+
+### Changed
+
+- Update dependents
+
+### Fixed
+
+- JSON.parse problems [#12](https://github.com/Bessamu/ajax-multiselect-nova-field/pull/12/files)
+
+## [1.2.1]
+
+### Changed
+- Bump ssri from 6.0.1 to 6.0.2
+
 ## [1.2.0]
 
 ### Added
