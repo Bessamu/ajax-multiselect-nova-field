@@ -35,6 +35,7 @@ export default {
 
   data() {
     return {
+        value: [],
       isLoading: false,
       ajaxTimeout: null
     }

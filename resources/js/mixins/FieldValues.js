@@ -1,20 +1,19 @@
 export default {
   data() {
     return {
-      options: []
+      options: [],
+        value: null
     }
   },
 
   methods: {
     setValueFromField() {
-       if (this.field.value != null && this.field.value.length < 1) {
-                this.value = null
-       } else {
-           this.value = JSON.parse(this.field.value)
-       }
+        if (this.field.value != null && this.field.value.length > 0) {
+            this.value = JSON.parse(this.field.value)
+        }
     },
     async setInitialOptions() {
-      if (this.value != null) {
+      if (this.value != null && this.value.length > 0) {
         Nova.request().get('/nova-vendor/ajax-multiselect-nova-field/ajax/options', {
           params: {
             'class': this.field.modelClass,
